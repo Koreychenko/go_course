@@ -10,14 +10,6 @@ func mergeAlternately(word1 string, word2 string) string {
 	len1 := len(word1)
 	len2 := len(word2)
 
-	if len1 == 0 {
-		return word2
-	}
-
-	if len2 == 0 {
-		return word1
-	}
-
 	for i := 0; i < len1; i++ {
 		merged.WriteByte(word1[i])
 		if i < len2 {
