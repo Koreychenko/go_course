@@ -1,22 +1,18 @@
 package leetcode
 
 func maxArea(height []int) int {
-	p1 := 0
-	p2 := len(height) - 1
-
-	sqr := 0
+	sqr, p1, p2 := 0, 0, len(height)-1
 
 	for p1 != p2 {
-		sqrCandidate := (p2 - p1) * min(height[p1], height[p2])
-		if sqr < sqrCandidate {
-			sqr = sqrCandidate
-		}
+		sqr = max(sqr, (p2-p1)*min(height[p1], height[p2]))
 
 		if height[p1] < height[p2] {
 			p1++
-		} else {
-			p2--
+
+			continue
 		}
+
+		p2--
 	}
 
 	return sqr
