@@ -1,5 +1,7 @@
 package leetcode
 
+import "slices"
+
 func moveZeroes(nums []int) {
 	for i, n := range nums {
 		if n == 0 {
@@ -20,6 +22,38 @@ func moveZeroes(nums []int) {
 	}
 }
 
-func Leetcode283(nums []int) {
-	moveZeroes(nums)
+func moveZeroesFast(nums []int) []int {
+	ln := len(nums)
+	for i, n := range nums {
+		if n == 0 {
+			counter := 0
+
+			j := i
+			for {
+				if j < ln && nums[j] == 0 {
+					counter++
+					j++
+				} else {
+					break
+				}
+			}
+
+			if i+counter < ln {
+				nums = slices.Replace(nums, i, i+counter)
+				j = 0
+				for j < counter {
+					nums = append(nums, 0)
+					j++
+				}
+			} else {
+				break
+			}
+		}
+	}
+
+	return nums
+}
+
+func Leetcode283(nums []int) []int {
+	return moveZeroesFast(nums)
 }
